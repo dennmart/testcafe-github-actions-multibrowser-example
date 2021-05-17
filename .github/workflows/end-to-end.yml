@@ -27,4 +27,4 @@ jobs:
           TEAMYAP_USER_PASSWORD: ${{ secrets.TEAMYAP_USER_PASSWORD }}
         uses: DevExpress/testcafe-action@latest
         with:
-          args: "chrome *_test.js"
+          args: "chrome:headless *_test.js"
