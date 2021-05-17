@@ -50,3 +50,26 @@ jobs:
         uses: DevExpress/testcafe-action@latest
         with:
           args: "firefox:headless *_test.js"
+
+  edge:
+    runs-on: windows-latest
+    needs: firefox
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12.22.0
+
+      - name: Run TestCafe tests on headless Edge
+        env:
+          TEAMYAP_ADMIN_EMAIL: ${{ secrets.TEAMYAP_ADMIN_EMAIL }}
+          TEAMYAP_ADMIN_PASSWORD: ${{ secrets.TEAMYAP_ADMIN_PASSWORD }}
+          TEAMYAP_ADMIN_NAME: ${{ secrets.TEAMYAP_ADMIN_NAME }}
+          TEAMYAP_USER_EMAIL: ${{ secrets.TEAMYAP_USER_EMAIL }}
+          TEAMYAP_USER_PASSWORD: ${{ secrets.TEAMYAP_USER_PASSWORD }}
+        uses: DevExpress/testcafe-action@latest
+        with:
+          args: "edge:headless *_test.js"
