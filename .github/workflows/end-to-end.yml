@@ -5,6 +5,13 @@ on:
     branches:
       - main
 
+env:
+  TEAMYAP_ADMIN_EMAIL: ${{ secrets.TEAMYAP_ADMIN_EMAIL }}
+  TEAMYAP_ADMIN_PASSWORD: ${{ secrets.TEAMYAP_ADMIN_PASSWORD }}
+  TEAMYAP_ADMIN_NAME: ${{ secrets.TEAMYAP_ADMIN_NAME }}
+  TEAMYAP_USER_EMAIL: ${{ secrets.TEAMYAP_USER_EMAIL }}
+  TEAMYAP_USER_PASSWORD: ${{ secrets.TEAMYAP_USER_PASSWORD }}
+
 jobs:
   chrome:
     runs-on: ubuntu-latest
@@ -18,12 +25,6 @@ jobs:
           node-version: 12.22.0
 
       - name: Run TestCafe tests on headless Chrome
-        env:
-          TEAMYAP_ADMIN_EMAIL: ${{ secrets.TEAMYAP_ADMIN_EMAIL }}
-          TEAMYAP_ADMIN_PASSWORD: ${{ secrets.TEAMYAP_ADMIN_PASSWORD }}
-          TEAMYAP_ADMIN_NAME: ${{ secrets.TEAMYAP_ADMIN_NAME }}
-          TEAMYAP_USER_EMAIL: ${{ secrets.TEAMYAP_USER_EMAIL }}
-          TEAMYAP_USER_PASSWORD: ${{ secrets.TEAMYAP_USER_PASSWORD }}
         uses: DevExpress/testcafe-action@latest
         with:
           args: "chrome:headless *_test.js"
@@ -41,12 +42,6 @@ jobs:
           node-version: 12.22.0
 
       - name: Run TestCafe tests on headless Firefox
-        env:
-          TEAMYAP_ADMIN_EMAIL: ${{ secrets.TEAMYAP_ADMIN_EMAIL }}
-          TEAMYAP_ADMIN_PASSWORD: ${{ secrets.TEAMYAP_ADMIN_PASSWORD }}
-          TEAMYAP_ADMIN_NAME: ${{ secrets.TEAMYAP_ADMIN_NAME }}
-          TEAMYAP_USER_EMAIL: ${{ secrets.TEAMYAP_USER_EMAIL }}
-          TEAMYAP_USER_PASSWORD: ${{ secrets.TEAMYAP_USER_PASSWORD }}
         uses: DevExpress/testcafe-action@latest
         with:
           args: "firefox:headless *_test.js"
@@ -64,12 +59,6 @@ jobs:
           node-version: 12.22.0
 
       - name: Run TestCafe tests on headless Edge
-        env:
-          TEAMYAP_ADMIN_EMAIL: ${{ secrets.TEAMYAP_ADMIN_EMAIL }}
-          TEAMYAP_ADMIN_PASSWORD: ${{ secrets.TEAMYAP_ADMIN_PASSWORD }}
-          TEAMYAP_ADMIN_NAME: ${{ secrets.TEAMYAP_ADMIN_NAME }}
-          TEAMYAP_USER_EMAIL: ${{ secrets.TEAMYAP_USER_EMAIL }}
-          TEAMYAP_USER_PASSWORD: ${{ secrets.TEAMYAP_USER_PASSWORD }}
         uses: DevExpress/testcafe-action@latest
         with:
           args: "edge:headless *_test.js"
